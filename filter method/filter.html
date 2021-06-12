@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        li{
+            list-style-type: none;
+        }
+    </style>
+</head>
+<body>
+    
+    <input id="searchbar" type="text" placeholder="chearch"> <button>Search</button>
+    <ul class="list_user">
+    </ul>
+
+    <script>
+        let user = ['asta', 'noelle', 'leopold', 'mimosa', 'arnauld']
+        let list = document.querySelector('.list_user')
+        let filterList = []
+        filterList = user
+        function generateList(){
+            for (let i = 0; i < filterList.length; i++) {
+                let newUser = document.createElement('li')
+                newUser.innerText = filterList[i]
+                list.appendChild(newUser)
+            }
+        }
+        const search = document.getElementById('searchbar')
+        search.addEventListener('keyup', function(e){
+            list.innerHTML = ""
+            filterList = user.filter((item)=>{
+                for (let index = 0; index < item.length; index++) {
+                    return item.includes(search.value)
+                }
+            })
+            generateList()
+        })
+        generateList()
+    </script>
+</body>
+</html>
